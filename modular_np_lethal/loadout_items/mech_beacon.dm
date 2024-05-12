@@ -16,7 +16,8 @@
 		exosuit_packs = list()
 		var/list/possible_exosuit_packs = list(
 			/obj/vehicle/sealed/mecha/gygax/streetsweeper,
-			/obj/vehicle/sealed/mecha/savannah_ivanov/exstasi
+			/obj/vehicle/sealed/mecha/savannah_ivanov/exstasi,
+			/obj/vehicle/sealed/mecha/durand/tortuga
 		)
 		for(var/obj/vehicle/sealed/mecha/exosuit_pack as anything in possible_exosuit_packs)
 			exosuit_packs[initial(exosuit_pack.name)] = exosuit_pack
@@ -25,10 +26,10 @@
 //special pre equipped exosuits for it to deploy. they get max ammo and better parts.
 /obj/vehicle/sealed/mecha/gygax/streetsweeper
 	name = "\improper Gygax 'Streetsweeper'"
-	desc = "A medium, high mobility exosuit equipped with an LBX-10 Autocannon and PEP-6 anti-structural missiles, intended for breachwork and urban crowd control."
+	desc = "A medium, high mobility exosuit equipped with an LBX-10 Autocannon and an autocannon 20, intended for breachwork and urban crowd control."
 	equip_by_category = list(
 		MECHA_L_ARM = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot,
-		MECHA_R_ARM = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/breaching,
+		MECHA_R_ARM = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg/ac20,
 		MECHA_UTILITY = list(/obj/item/mecha_parts/mecha_equipment/radio, /obj/item/mecha_parts/mecha_equipment/air_tank/full),
 		MECHA_POWER = list(),
 		MECHA_ARMOR = list(),)
@@ -64,3 +65,25 @@
 	capacitor = new /obj/item/stock_parts/capacitor/adv(src)
 	servo = new /obj/item/stock_parts/servo/nano(src)
 	update_part_values()
+
+/obj/vehicle/sealed/mecha/durand/tortuga
+	name = "\improper Durand 'Tortuga'"
+	desc = "A low mobility, high durability long range powerhouse built to be deployed in a defensive location. Comes pre-equipped with a long range laser cannon and an UAC2"
+	equip_by_category = list(
+		MECHA_L_ARM = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg,
+		MECHA_R_ARM = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy,
+		MECHA_UTILITY = list(/obj/item/mecha_parts/mecha_equipment/radio, /obj/item/mecha_parts/mecha_equipment/air_tank/full),
+		MECHA_POWER = list(),
+		MECHA_ARMOR = list(),)
+
+
+/obj/vehicle/sealed/mecha/durand/tortuga/populate_parts()
+	cell = new /obj/item/stock_parts/cell/hyper(src)
+	scanmod = new /obj/item/stock_parts/scanning_module/adv(src)
+	capacitor = new /obj/item/stock_parts/capacitor/adv(src)
+	servo = new /obj/item/stock_parts/servo/nano(src)
+	update_part_values()
+
+/obj/vehicle/sealed/mecha/durand/tortuga/Initialize(mapload)
+	. = ..()
+	max_ammo()

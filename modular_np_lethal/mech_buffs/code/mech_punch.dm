@@ -7,8 +7,8 @@
  * * mecha_attacker: Mech attacking this target
  * * user: mob that initiated the attack from inside the mech as a controller
  */
-/atom/proc/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)
-	SHOULD_CALL_PARENT(TRUE)
+/atom/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)
+	SHOULD_CALL_PARENT(FALSE)
 	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_MECH, mecha_attacker, user)
 	log_combat(user, src, "attacked", mecha_attacker, "(COMBAT MODE: [uppertext(user.combat_mode)] (DAMTYPE: [uppertext(mecha_attacker.damtype)])")
 	return 0
@@ -70,20 +70,15 @@
 		switch(mecha_attacker.damtype)
 			if(BRUTE)
 				if(mecha_attacker.force > 35) // durand and other heavy mechas
-					Unconscious(0)
+					Unconscious(0) //WHY WONT YOU WORK GRR
 				else if(mecha_attacker.force > 20 && !IsKnockdown()) // lightweight mechas like gygax
-					Knockdown(0)
+					Knockdown(0) // GRRRR
 				selected_zone.receive_damage(dmg, 0, updating_health = TRUE)
 				playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
 			if(FIRE)
 				selected_zone.receive_damage(0, dmg, updating_health = TRUE)
 				playsound(src, 'sound/items/welder.ogg', 50, TRUE)
-			if(TOX)
-				playsound(src, 'sound/effects/spray2.ogg', 50, TRUE)
-				if((reagents.get_reagent_amount(/datum/reagent/cryptobiolin) + mecha_attacker.force) < mecha_attacker.force*2)
-					reagents.add_reagent(/datum/reagent/cryptobiolin, mecha_attacker.force/2)
-				if((reagents.get_reagent_amount(/datum/reagent/toxin) + mecha_attacker.force) < mecha_attacker.force*2)
-					reagents.add_reagent(/datum/reagent/toxin, mecha_attacker.force/2.5)
+
 			else
 				return 0
 		. = dmg
