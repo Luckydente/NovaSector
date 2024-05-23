@@ -12134,7 +12134,7 @@
 /turf/open/floor/glass/reinforced,
 /area/station/hallway/secondary/command)
 "dKg" = (
-/obj/structure/plaque/static_plaque/golden/commission/ouroboros,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "dKl" = (
@@ -45269,7 +45269,6 @@
 /obj/machinery/camera/directional/south{
 	c_tag = "Arrivals - Upper Hallway"
 	},
-/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "npX" = (
