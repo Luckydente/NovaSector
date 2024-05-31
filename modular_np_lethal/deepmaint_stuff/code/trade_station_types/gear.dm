@@ -22,7 +22,7 @@
 		/datum/crafting_bench_recipe_real/tele_shield,
 		/datum/crafting_bench_recipe_real/ballistic_shield,
 		/datum/crafting_bench_recipe_real/black_keycard,
-		/datum/crafting_bench_recipe_real/exo_beacon
+		/datum/crafting_bench_recipe_real/exo_beacon,
 	)
 
 /obj/structure/epic_loot_crafting_bench/gear/examine_more(mob/user)

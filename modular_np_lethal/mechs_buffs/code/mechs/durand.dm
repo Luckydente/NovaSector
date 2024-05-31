@@ -7,7 +7,7 @@
 	movedelay = 5
 	internal_damage_threshold = 25
 	internal_damage_probability = 15
-	max_integrity = 1001
+	max_integrity = 1000
 	accesses = list(ACCESS_MECH_SCIENCE, ACCESS_MECH_SECURITY)
 	armor_type = /datum/armor/mecha_durand
 	max_temperature = 30000
